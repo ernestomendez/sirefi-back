@@ -1,8 +1,5 @@
 package mx.com.dxesoft.sirefi.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -18,12 +15,11 @@ import java.util.Set;
  * Created by ernesto on 17/09/17.
  */
 @Entity(name = "user")
-@Getter
-@Setter
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) //esta es la estrategia de default no es necesario ponerla.
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "sequenceGenerator") //esta es la estrategia de default no es necesario ponerla.
+    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -42,8 +38,8 @@ public class User implements Serializable {
 
     @Column
     @NotNull
-    @JsonIgnore
-    @Transient
+//    @JsonIgnore
+//    @Transient
     private String password;   //TODO Convertir esto a char
 
     @Column
@@ -62,15 +58,87 @@ public class User implements Serializable {
     @Column(name = "disabled_date")
     private LocalDate disabledDate;
 
-    /*
-    Al cambiar el foreing key en la tabla, olvidé cambiar el JoinColumn.
-     */
     @ManyToMany
     @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(
             name = "user_roles",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "rol_id", referencedColumnName = "id")}
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
     )
-    private Set<Rol> roles = new HashSet<>();
+    private Set<Role> roles = new HashSet<>();
+
+    public User() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
+    }
+
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
+    }
+
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
+    }
+
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public LocalDate getDisabledDate() {
+        return disabledDate;
+    }
+
+    public void setDisabledDate(LocalDate disabledDate) {
+        this.disabledDate = disabledDate;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 }

@@ -5,4 +5,5 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <include file="changelog/20170914225946_create_user_and_roles.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20171001214215_add_autoincrement_user.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

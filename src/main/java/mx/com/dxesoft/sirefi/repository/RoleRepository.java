@@ -1,6 +1,6 @@
 package mx.com.dxesoft.sirefi.repository;
 
-import mx.com.dxesoft.sirefi.entity.Rol;
+import mx.com.dxesoft.sirefi.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
  * Created by ernesto on 20/09/17.
  */
 @Repository
-public interface RoleRepository extends JpaRepository<Rol, Long> {
+public interface RoleRepository extends JpaRepository<Role, Long> {
 
-    Rol findByRoleName(String rolName);
+    Role findByRoleName(String rolName);
 
 }

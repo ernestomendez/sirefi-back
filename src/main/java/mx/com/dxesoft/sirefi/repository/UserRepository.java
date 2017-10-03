@@ -4,6 +4,8 @@ import mx.com.dxesoft.sirefi.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 /**
  * sirefi-back, mx.com.dxesoft.sirefi.repository . UserRepository
  * Created by ernesto on 20/09/17.
@@ -11,5 +13,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    User findByUserName(String email);
+    Optional<User> findByUserName(String email);
 }

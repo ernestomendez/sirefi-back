@@ -7,12 +7,12 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
- * sirefi-back, mx.com.dxesoft.sirefi.entity . Rol
+ * sirefi-back, mx.com.dxesoft.sirefi.entity . Role
  * Created by ernesto on 20/09/17.
  */
 @Entity(name = "roles")
 @Data
-public class Rol implements Serializable {
+public class Role implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

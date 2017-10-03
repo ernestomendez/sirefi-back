@@ -7,6 +7,10 @@ spring:
     password: admin
     driver-class-name: com.mysql.jdbc.Driver
 
+  queries:
+    user-query: select user_name, password, active from user where user_name=?
+    roles-query: select u.user_name, r.role_name from user u inner join user_roles ur on(u.id=ur.user_id) inner join roles r on(ur.role_id=r.id) where u.user_name=?
+
 #Aparentemente es necesaria toda esta configuración para que se ejecuten correctamente los scripts de liquibase,
 #es decir si no le dices en que base de datos se va a conectar puede fallar.
 liquibase:
